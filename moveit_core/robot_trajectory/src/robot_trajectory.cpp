@@ -65,10 +65,10 @@ void RobotTrajectory::deepCopy(const RobotTrajectory& rhs)
 {
   this->robot_model_ = rhs.robot_model_;
   this->group_ = rhs.group_;
-  // rhs.waypoints_.resize((this->waypoints_).size());
-  for (auto it = (this->waypoints_).begin(); it != (this->waypoints_).end(); it++)
+  this->waypoints_.resize(rhs.waypoints_.size());
+  for (auto it = rhs.waypoints_.begin(); it != rhs.waypoints_.end(); it++)
   {
-    rhs.waypoints_.emplace_back(std::make_shared<moveit::core::RobotState>(*(*it)));
+    (this->waypoints_).emplace_back(std::make_shared<moveit::core::RobotState>(*(*it)));
   }
   this->duration_from_previous_ = rhs.duration_from_previous_;
 }
